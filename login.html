@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - SmileBright Dental</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .smile-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1.2rem;
+      z-index: 2;
+      animation: smileBounce 1.2s cubic-bezier(.23,1.01,.32,1) both;
+    }
+    @keyframes smileBounce {
+      0% { transform: translateY(-30px) scale(0.8);}
+      60% { transform: translateY(10px) scale(1.1);}
+      100% { transform: translateY(0) scale(1);}
+    }
+    .smile-svg {
+      width: 56px;
+      height: 56px;
+      margin-bottom: 0.2rem;
+      display: block;
+    }
+    .smile-text {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #60a5fa;
+      letter-spacing: 0.04em;
+      text-shadow: 0 2px 8px #818cf855;
+    }
+    /* Optional: style FontAwesome icon if you use it elsewhere */
+    .fa-tooth {
+      color: #18b6b0;
+      font-size: 56px;
+      margin-bottom: 0.2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sparkles for animated background -->
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+  <div class="sparkle"></div>
+  <!-- Firebase App (core) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <!-- Firebase Auth -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <!-- Firebase Database -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+  <section id="login">
+    <div class="login-card">
+      <div class="smile-logo">
+        <!-- Use the same FontAwesome tooth icon as in the navbar -->
+        <i class="fa-solid fa-tooth" style="color:#18b6b0; font-size:56px; margin-bottom:0.2rem;"></i>
+        <div class="smile-text">SmileBright</div>
+      </div>
+      <div id="formTitle" class="login-title">Login</div>
+      <div id="loginForm">
+        <input type="email" id="loginEmail" class="login-input" placeholder="Email" autocomplete="username" required />
+        <input type="password" id="loginPassword" class="login-input" placeholder="Password" autocomplete="current-password" required />
+        <div id="loginMessage"></div>
+        <div class="login-actions">
+          <button class="login-btn" type="button" onclick="login()">Login</button>
+          <button class="login-btn" type="button" onclick="showRegisterForm()">Register</button>
+        </div>
+      </div>
+      <div id="registerForm" style="display:none;">
+        <input type="text" id="registerName" class="login-input" placeholder="Full Name" autocomplete="name" required />
+        <input type="email" id="registerEmail" class="login-input" placeholder="Email" autocomplete="username" required />
+        <input type="text" id="registerPhone" class="login-input" placeholder="Phone Number" autocomplete="tel" required />
+        <input type="password" id="registerPassword" class="login-input" placeholder="Password" autocomplete="new-password" required />
+        <input type="password" id="registerPassword2" class="login-input" placeholder="Confirm Password" autocomplete="new-password" required />
+        <div id="registerMessage"></div>
+        <div class="login-actions">
+          <button class="login-btn" type="button" onclick="register()">Register</button>
+          <button class="login-btn" type="button" onclick="showLoginForm()">Back to Login</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCvs3wPDVbTc004_N8_ptjkcR_l6VHyjcs",
+      authDomain: "dental-clinic-3c074.firebaseapp.com",
+      projectId: "dental-clinic-3c074",
+      storageBucket: "dental-clinic-3c074.appspot.com",
+      messagingSenderId: "912575701073",
+      appId: "1:912575701073:web:1dd37befd0db230e979870",
+      measurementId: "G-YCZDSY5NLL"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+
+    function login() {
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      const msg = document.getElementById('loginMessage');
+      msg.textContent = '';
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          msg.textContent = "Login successful! Redirecting...";
+          msg.className = "success";
+          // Redirect based on email
+          if (email === "admin@smilebright.com") {
+            setTimeout(() => window.location.href = "admin.html", 1200);
+          } else {
+            setTimeout(() => window.location.href = "index.html", 1200);
+          }
+        })
+        .catch(error => {
+          msg.textContent = error.message;
+          msg.className = "";
+        });
+    }
+
+    function showRegisterForm() {
+      document.getElementById('loginForm').style.display = 'none';
+      document.getElementById('registerForm').style.display = 'block';
+      document.getElementById('formTitle').textContent = 'Register';
+    }
+
+    function showLoginForm() {
+      document.getElementById('registerForm').style.display = 'none';
+      document.getElementById('loginForm').style.display = 'block';
+      document.getElementById('formTitle').textContent = 'Login';
+    }
+
+    function register() {
+      const name = document.getElementById('registerName').value;
+      const email = document.getElementById('registerEmail').value;
+      const phone = document.getElementById('registerPhone').value;
+      const password = document.getElementById('registerPassword').value;
+      const password2 = document.getElementById('registerPassword2').value;
+      const msg = document.getElementById('registerMessage');
+      msg.textContent = '';
+      if (!name || !email || !phone) {
+        msg.textContent = "Please fill in all fields.";
+        return;
+      }
+      if (password.length < 6) {
+        msg.textContent = "Password should be at least 6 characters.";
+        return;
+      }
+      if (password !== password2) {
+        msg.textContent = "Passwords do not match.";
+        return;
+      }
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          // Optionally save extra info to Firebase Database
+          const user = userCredential.user;
+          return firebase.database().ref('users/' + user.uid).set({
+            name: name,
+            email: email,
+            phone: phone
+          });
+        })
+        .then(() => {
+          msg.textContent = "Registration successful! You can now log in.";
+          msg.className = "success";
+          setTimeout(showLoginForm, 1200);
+        })
+        .catch(error => {
+          msg.textContent = error.message;
+          msg.className = "";
+        });
+    }
+  </script>
+</body>
+</html>

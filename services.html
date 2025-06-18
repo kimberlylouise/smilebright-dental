@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services - SmileBright Dental</title>
+    <link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="services.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fa-solid fa-tooth" style="color:#18b6b0; font-size:32px; margin-right:8px;"></i>
+      <span>SmileBright</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="appointment.html">Appointment</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    <form action="login.html" method="get" style="display:inline;">
+        <button type="submit" style="background:#14b8a6;color:#fff;border:none;padding:7px 18px;border-radius:5px;cursor:pointer;font-weight:600;">Logout</button>
+      </form>
+    </ul>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-services">
+    <div class="hero-content">
+      <h1>Our Dental Services</h1>
+      <p>Gentle, modern, and comprehensive care for your brightest smile.</p>
+      <button class="cta-btn" onclick="window.location.href='appointment.html'">Book an Appointment</button>
+    </div>
+    <div class="hero-bg"></div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-section">
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🪥</div>
+        <div class="service-title">Teeth Cleaning</div>
+        <div class="service-desc">Professional cleaning to remove plaque, tartar, and stains for a healthy, radiant smile.</div>
+        <button class="service-learn" data-modal="cleaningModal">
+          Learn More <span>&rarr;</span>
+        </button>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🦷</div>
+        <div class="service-title">Braces & Orthodontics</div>
+        <div class="service-desc">Modern braces and aligners to straighten teeth comfortably and discreetly.</div>
+        <button class="service-learn" data-modal="bracesModal">
+          Learn More <span>&rarr;</span>
+        </button>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔩</div>
+        <div class="service-title">Dental Implants</div>
+        <div class="service-desc">Restore your smile and confidence with natural-looking, durable dental implants.</div>
+        <button class="service-learn" data-modal="implantsModal">
+          Learn More <span>&rarr;</span>
+        </button>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛡️</div>
+        <div class="service-title">Preventive Care</div>
+        <div class="service-desc">Regular checkups, fluoride treatments, and sealants to keep your teeth healthy for life.</div>
+        <button class="service-learn" data-modal="preventiveModal">
+          Learn More <span>&rarr;</span>
+        </button>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💉</div>
+        <div class="service-title">Root Canal</div>
+        <div class="service-desc">Gentle root canal therapy to save your natural tooth and relieve pain.</div>
+        <button class="service-learn" data-modal="rootModal">
+          Learn More <span>&rarr;</span>
+        </button>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✨</div>
+        <div class="service-title">Cosmetic Dentistry</div>
+        <div class="service-desc">Whitening, veneers, and more to give you the smile of your dreams.</div>
+        <button class="service-learn" data-modal="cosmeticModal">
+          Learn More <span>&rarr;</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Carousel -->
+  <section class="testimonials-section">
+    <div class="testimonials-title">What Our Patients Say</div>
+    <div class="testimonial-carousel" id="testimonial-carousel">
+      <button class="carousel-btn" id="prevTestimonial">&#8592;</button>
+      <div class="testimonial-card active">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="testimonial-avatar" alt="Patient 1"/>
+        <div class="testimonial-name">Maria G.</div>
+        <div class="testimonial-text">"The staff is so friendly and the clinic is beautiful! My teeth have never felt cleaner."</div>
+      </div>
+      <div class="testimonial-card">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="testimonial-avatar" alt="Patient 2"/>
+        <div class="testimonial-name">James R.</div>
+        <div class="testimonial-text">"I was nervous about getting braces, but they made the process easy and painless."</div>
+      </div>
+      <div class="testimonial-card">
+        <img src="https://randomuser.me/api/portraits/women/68.jpg" class="testimonial-avatar" alt="Patient 3"/>
+        <div class="testimonial-name">Sophie L.</div>
+        <div class="testimonial-text">"Highly recommend SmileBright! The dentists are caring and professional."</div>
+      </div>
+      <button class="carousel-btn" id="nextTestimonial">&#8594;</button>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="faq-title">Frequently Asked Questions</div>
+    <ul class="faq-list">
+      <li class="faq-item">
+        <div class="faq-question">Do you accept insurance? <span>+</span></div>
+        <div class="faq-answer">Yes, we accept most major dental insurance plans. Please contact us for details.</div>
+      </li>
+      <li class="faq-item">
+        <div class="faq-question">Is teeth whitening safe? <span>+</span></div>
+        <div class="faq-answer">Absolutely! Our professional whitening treatments are safe and effective.</div>
+      </li>
+      <li class="faq-item">
+        <div class="faq-question">How often should I visit the dentist? <span>+</span></div>
+        <div class="faq-answer">We recommend a checkup and cleaning every 6 months for optimal oral health.</div>
+      </li>
+      <li class="faq-item">
+        <div class="faq-question">Do you treat children? <span>+</span></div>
+        <div class="faq-answer">Yes! We love caring for patients of all ages, including kids.</div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Dental Services Modals -->
+<div id="cleaningModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2>Teeth Cleaning</h2>
+    <p>Our gentle dental hygienists use advanced tools to remove plaque and tartar, polish your teeth, and leave your mouth feeling fresh. Regular cleanings help prevent gum disease and cavities.</p>
+    <ul>
+      <li>Comprehensive oral exam</li>
+      <li>Gentle scaling & polishing</li>
+      <li>Personalized hygiene tips</li>
+    </ul>
+    <button class="cta-btn" onclick="window.location.href='appointment.html'">Book an Appointment</button>
+  </div>
+</div>
+<div id="bracesModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2>Braces & Orthodontics</h2>
+    <p>We offer traditional braces and clear aligners to help you achieve a straight, confident smile. Our orthodontic solutions are comfortable and tailored to your needs.</p>
+    <ul>
+      <li>Metal & ceramic braces</li>
+      <li>Clear aligners (Invisalign)</li>
+      <li>Flexible payment plans</li>
+    </ul>
+    <button class="cta-btn" onclick="window.location.href='appointment.html'">Book an Appointment</button>
+  </div>
+</div>
+<div id="implantsModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2>Dental Implants</h2>
+    <p>Dental implants are a permanent, natural-looking solution for missing teeth. Our team uses advanced technology for precise, comfortable placement and beautiful results.</p>
+    <ul>
+      <li>Custom-matched to your smile</li>
+      <li>Durable & long-lasting</li>
+      <li>Quick recovery</li>
+    </ul>
+    <button class="cta-btn" onclick="window.location.href='appointment.html'">Book an Appointment</button>
+  </div>
+</div>
+<div id="preventiveModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2>Preventive Care</h2>
+    <p>Prevention is the key to lifelong oral health. We provide checkups, fluoride treatments, and sealants to protect your teeth and catch issues early.</p>
+    <ul>
+      <li>Routine exams & x-rays</li>
+      <li>Fluoride & sealants</li>
+      <li>Personalized prevention plans</li>
+    </ul>
+    <button class="cta-btn" onclick="window.location.href='appointment.html'">Book an Appointment</button>
+  </div>
+</div>
+<div id="rootModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2>Root Canal</h2>
+    <p>Our gentle root canal therapy relieves pain and saves your natural tooth. We use modern techniques for a comfortable, stress-free experience.</p>
+    <ul>
+      <li>Pain-free procedures</li>
+      <li>Advanced technology</li>
+      <li>Fast recovery</li>
+    </ul>
+    <button class="cta-btn" onclick="window.location.href='appointment.html'">Book an Appointment</button>
+  </div>
+</div>
+<div id="cosmeticModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2>Cosmetic Dentistry</h2>
+    <p>Enhance your smile with whitening, veneers, and more. Our cosmetic treatments are safe, effective, and designed to boost your confidence.</p>
+    <ul>
+      <li>Professional whitening</li>
+      <li>Porcelain veneers</li>
+      <li>Smile makeovers</li>
+    </ul>
+    <button class="cta-btn" onclick="window.location.href='appointment.html'">Book an Appointment</button>
+  </div>
+</div>
+
+  <!-- Animated JS for carousel and FAQ -->
+  <script>
+    // Hamburger menu for mobile
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      menuToggle.classList.toggle('active');
+    });
+
+    // Testimonials Carousel
+    const testimonials = document.querySelectorAll('.testimonial-card');
+    let currentTestimonial = 0;
+    function showTestimonial(idx) {
+      testimonials.forEach((card, i) => {
+        card.classList.toggle('active', i === idx);
+      });
+    }
+    document.getElementById('prevTestimonial').onclick = () => {
+      currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+      showTestimonial(currentTestimonial);
+    }
+    document.getElementById('nextTestimonial').onclick = () => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      showTestimonial(currentTestimonial);
+    }
+
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        faqItems.forEach(i => i.classList.remove('open'));
+        if (!isOpen) {
+          item.classList.add('open');
+        }
+      });
+    });
+
+    // Dental Services Modals
+const cleaningModal = document.getElementById('cleaningModal');
+const bracesModal = document.getElementById('bracesModal');
+const implantsModal = document.getElementById('implantsModal');
+const preventiveModal = document.getElementById('preventiveModal');
+const rootModal = document.getElementById('rootModal');
+const cosmeticModal = document.getElementById('cosmeticModal');
+
+document.querySelectorAll('.service-learn').forEach(btn => {
+  btn.onclick = function() {
+    const modalId = btn.getAttribute('data-modal');
+    document.getElementById(modalId).style.display = 'flex';
+  };
+});
+document.querySelectorAll('.modal').forEach(modal => {
+  modal.querySelector('.close-modal').onclick = function() {
+    modal.style.display = 'none';
+  };
+});
+window.onclick = function(event) {
+  document.querySelectorAll('.modal').forEach(modal => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+};
+  </script>
+</body>
+</html>

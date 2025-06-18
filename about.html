@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us - SmileBright Dental</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* About Section Styles */
+    #about {
+      max-width: 1100px;
+      margin: 3rem auto 2rem auto;
+      background: rgba(255,255,255,0.92);
+      border-radius: 2rem;
+      box-shadow: 0 8px 32px rgba(20,184,166,0.13);
+      padding: 3rem 2rem 2rem 2rem;
+      position: relative;
+      overflow: hidden;
+      animation: aboutFadeIn 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    @keyframes aboutFadeIn {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    #about h2 {
+      font-size: 2.5rem;
+      color: #14b8a6;
+      margin-bottom: 1rem;
+      text-align: center;
+      letter-spacing: 1px;
+      font-weight: 800;
+    }
+    #about .about-lead {
+      font-size: 1.3rem;
+      color: #22223b;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      margin-bottom: 2.5rem;
+    }
+    .about-img-wrap {
+      text-align: center;
+    }
+    .about-img {
+      width: 90%;
+      max-width: 340px;
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 24px rgba(56,189,248,0.13);
+      border: 5px solid #14b8a6;
+      animation: imgFloat 4s infinite alternate;
+    }
+    @keyframes imgFloat {
+      0% { transform: translateY(0);}
+      100% { transform: translateY(-18px);}
+    }
+    .about-content {
+      font-size: 1.08rem;
+      color: #444;
+      line-height: 1.7;
+      padding: 0 0.5rem;
+    }
+    .about-values {
+      margin: 2rem 0 1.5rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .value-card {
+      background: #f0fdfa;
+      border-radius: 1rem;
+      box-shadow: 0 2px 12px rgba(20,184,166,0.08);
+      padding: 1.2rem 1.5rem;
+      min-width: 180px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 2px solid transparent;
+      font-weight: 600;
+      color: #14b8a6;
+      font-size: 1.1rem;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .value-card:hover {
+      transform: scale(1.05) rotate(-1deg);
+      box-shadow: 0 8px 24px rgba(20,184,166,0.13);
+      border: 2px solid #38bdf8;
+      background: linear-gradient(120deg, #f0fdfa 80%, #e0f7fa 100%);
+    }
+    .value-card span {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 0.5rem;
+      animation: valueIconBounce 2s infinite;
+    }
+    @keyframes valueIconBounce {
+      0%, 100% { transform: translateY(0);}
+      50% { transform: translateY(-8px);}
+    }
+    /* Team Section */
+    .team-section {
+      margin: 2.5rem 0 1.5rem 0;
+      text-align: center;
+    }
+    .team-title {
+      font-size: 2rem;
+      color: #14b8a6;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+    .team-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .team-card {
+      background: #fff;
+      border-radius: 1.2rem;
+      box-shadow: 0 2px 12px rgba(20,184,166,0.08);
+      padding: 1.2rem 1.5rem;
+      min-width: 210px;
+      max-width: 240px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    .team-card:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 8px 24px rgba(20,184,166,0.13);
+      border: 2px solid #14b8a6;
+    }
+    .team-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.8rem;
+      border: 3px solid #38bdf8;
+      box-shadow: 0 2px 8px rgba(56,189,248,0.13);
+    }
+    .team-name {
+      font-weight: bold;
+      color: #14b8a6;
+      margin-bottom: 0.2rem;
+      font-size: 1.1rem;
+    }
+    .team-role {
+      color: #555;
+      font-size: 0.98rem;
+      margin-bottom: 0.5rem;
+    }
+    .team-bio {
+      color: #666;
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+    /* Timeline */
+    .timeline-section {
+      margin: 2.5rem 0 1.5rem 0;
+    }
+    .timeline-title {
+      font-size: 2rem;
+      color: #14b8a6;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .timeline {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+      padding-left: 20px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #14b8a6 0%, #38bdf8 100%);
+      border-radius: 2px;
+    }
+    .timeline-event {
+      position: relative;
+      margin-bottom: 2.2rem;
+      padding-left: 2.5rem;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -2px;
+      top: 0.2rem;
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border: 4px solid #14b8a6;
+      border-radius: 50%;
+      z-index: 2;
+      box-shadow: 0 2px 8px rgba(20,184,166,0.13);
+      animation: dotPulse 2s infinite;
+    }
+    @keyframes dotPulse {
+      0%, 100% { box-shadow: 0 0 0 0 #14b8a6; }
+      50% { box-shadow: 0 0 0 8px #14b8a633; }
+    }
+    .timeline-date {
+      font-size: 0.98rem;
+      color: #38bdf8;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .timeline-desc {
+      color: #444;
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+    /* Responsive */
+    @media (max-width: 900px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      #about {
+        padding: 2rem 0.5rem;
+      }
+    }
+    @media (max-width: 700px) {
+      .about-values {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .team-grid {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .timeline {
+        padding-left: 10px;
+      }
+    }
+  </style>
+  <script src="script.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fa-solid fa-tooth" style="color:#18b6b0; font-size:32px; margin-right:8px;"></i>
+      <span>SmileBright</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="appointment.html">Appointment</a></li>
+      <li><a href="contact.html">Contact</a></li>
+     <form action="login.html" method="get" style="display:inline;">
+        <button type="submit" style="background:#14b8a6;color:#fff;border:none;padding:7px 18px;border-radius:5px;cursor:pointer;font-weight:600;">Logout</button>
+      </form>
+    </ul>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+  <section id="about">
+    <h2>About Us</h2>
+    <div class="about-lead">
+      At SmileBright Dental, your comfort and health are our top priorities.<br>
+      We blend advanced technology, a gentle touch, and a passion for smiles to deliver the best dental care for all ages.
+    </div>
+    <div class="about-grid">
+      <div class="about-img-wrap">
+        <img src="dental.png" alt="Our Clinic" class="about-img" />
+      </div>
+      <div class="about-content">
+        <p>
+          Founded in 2010, SmileBright Dental has grown into a trusted clinic serving families and individuals in Dental City and beyond. Our team of experienced dentists, hygienists, and support staff are dedicated to making every visit a positive experience.<br><br>
+          We believe in patient education, transparent communication, and personalized care. Whether you need a routine cleaning or a complete smile makeover, we’re here to help you achieve optimal oral health and confidence.
+        </p>
+        <ul style="margin-top:1.2rem; color:#14b8a6; font-weight:600;">
+          <li><span style="color:#7c3aed; font-size:1.2em; margin-right:0.4em;">✔️</span>Modern, welcoming clinic environment</li>
+          <li><span style="color:#7c3aed; font-size:1.2em; margin-right:0.4em;">✔️</span>State-of-the-art equipment &amp; digital X-rays</li>
+          <li><span style="color:#7c3aed; font-size:1.2em; margin-right:0.4em;">✔️</span>Flexible scheduling &amp; emergency care</li>
+          <li><span style="color:#7c3aed; font-size:1.2em; margin-right:0.4em;">✔️</span>Multilingual staff for your convenience</li>
+        </ul>
+      </div>
+    </div>
+    <div class="about-values">
+      <div class="value-card"><span>🤝</span>Compassion</div>
+      <div class="value-card"><span>🦷</span>Expertise</div>
+      <div class="value-card"><span>🌟</span>Integrity</div>
+      <div class="value-card"><span>💡</span>Innovation</div>
+      <div class="value-card"><span>😊</span>Patient-Centered</div>
+    </div>
+    <div class="team-section">
+      <div class="team-title">Meet Our Team</div>
+      <div class="team-grid">
+        <div class="team-card">
+          <img src="https://randomuser.me/api/portraits/men/65.jpg" class="team-avatar" alt="Dr. John Smith"/>
+          <div class="team-name">Dr. John Smith</div>
+          <div class="team-role">Chief Dentist</div>
+          <div class="team-bio">15+ years of experience in restorative and cosmetic dentistry.</div>
+        </div>
+        <div class="team-card">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" class="team-avatar" alt="Dr. Emily Chen"/>
+          <div class="team-name">Dr. Emily Chen</div>
+          <div class="team-role">Orthodontist</div>
+          <div class="team-bio">Specialist in braces and aligners for all ages.</div>
+        </div>
+        <div class="team-card">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" class="team-avatar" alt="Dr. Alex Rivera"/>
+          <div class="team-name">Dr. Alex Rivera</div>
+          <div class="team-role">Pediatric Dentist</div>
+          <div class="team-bio">Gentle care for children and teens, making dental visits fun!</div>
+        </div>
+        <div class="team-card">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" class="team-avatar" alt="Sarah Lee"/>
+          <div class="team-name">Sarah Lee</div>
+          <div class="team-role">Dental Hygienist</div>
+          <div class="team-bio">Passionate about prevention and patient education.</div>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-section">
+      <div class="timeline-title">Our Journey</div>
+      <div class="timeline">
+        <div class="timeline-event">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2010</div>
+          <div class="timeline-desc">SmileBright Dental opens its doors in Dental City.</div>
+        </div>
+        <div class="timeline-event">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2014</div>
+          <div class="timeline-desc">Expanded to a new, state-of-the-art facility with digital X-rays.</div>
+        </div>
+        <div class="timeline-event">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2018</div>
+          <div class="timeline-desc">Awarded "Best Family Dental Clinic" by Dental City Magazine.</div>
+        </div>
+        <div class="timeline-event">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2023</div>
+          <div class="timeline-desc">Launched SmileBright Kids program and advanced cosmetic services.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    // Hamburger menu for mobile
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      menuToggle.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

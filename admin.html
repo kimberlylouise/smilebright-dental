@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard - SmileBright Dental</title>
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <nav class="admin-nav">
+    <div class="logo">
+      <i class="fa-solid fa-tooth" style="color:#18b6b0; font-size:32px; margin-right:8px;"></i>
+      <span>SmileBright Admin</span>
+    </div>
+    <ul>
+      <li><a href="#dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+      <li><a href="#appointments"><i class="fa-solid fa-calendar-check"></i> Appointments</a></li>
+      <li><a href="#patients"><i class="fa-solid fa-users"></i> Patients</a></li>
+      <li><a href="#services"><i class="fa-solid fa-stethoscope"></i> Services</a></li>
+      <li><a href="#settings"><i class="fa-solid fa-gear"></i> Settings</a></li>
+      <li><a href="#" onclick="logout()"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </nav>
+  <main class="admin-main">
+    <section id="dashboard" class="admin-section">
+      <h2>Dashboard Overview</h2>
+      <div class="admin-stats">
+        <div class="stat-card">
+          <i class="fa-solid fa-calendar-check"></i>
+          <span id="stat-appointments">0</span>
+          <div class="stat-label">Total Appointments</div>
+        </div>
+        <div class="stat-card">
+          <i class="fa-solid fa-users"></i>
+          <span id="stat-patients">0</span>
+          <div class="stat-label">Registered Patients</div>
+        </div>
+        <div class="stat-card">
+          <i class="fa-solid fa-clock"></i>
+          <span id="stat-upcoming">0</span>
+          <div class="stat-label">Upcoming Appointments</div>
+        </div>
+        <div class="stat-card">
+          <i class="fa-solid fa-tooth"></i>
+          <span id="stat-services">5</span>
+          <div class="stat-label">Services Offered</div>
+        </div>
+      </div>
+      <div class="dashboard-welcome">
+        <h3>Welcome, Admin!</h3>
+        <p>
+          Here you can manage appointments, patients, and services for SmileBright Dental.<br>
+          Use the navigation menu to get started. Stay productive and keep your patients smiling!
+        </p>
+        <div class="dashboard-quicklinks">
+          <a href="#appointments" class="quicklink" onclick="showSection('appointments'); return false;"><i class="fa-solid fa-calendar-plus"></i> View Appointments</a>
+          <a href="#patients" class="quicklink" onclick="showSection('patients'); return false;"><i class="fa-solid fa-user-friends"></i> View Patients</a>
+          <a href="#services" class="quicklink" onclick="showSection('services'); return false;"><i class="fa-solid fa-stethoscope"></i> Manage Services</a>
+        </div>
+      </div>
+      <div class="dashboard-tip">
+        <i class="fa-solid fa-lightbulb"></i>
+        Tip: Keep your schedule up to date and check messages regularly for new patient inquiries!
+      </div>
+    </section>
+    <section id="appointments" class="admin-section" style="display:none;">
+      <h2>Appointments</h2>
+      <div id="appointmentsTable"></div>
+    </section>
+    <section id="patients" class="admin-section" style="display:none;">
+      <h2>Patients</h2>
+      <div id="patientsTable"></div>
+    </section>
+    <section id="services" class="admin-section" style="display:none;">
+      <h2>Services</h2>
+      <div class="services-admin-list" id="servicesAdminList">
+        <!-- Service cards will be rendered here -->
+      </div>
+      <button onclick="showAddService()" class="add-service-btn"><i class="fa-solid fa-plus"></i> Add Service</button>
+
+      <!-- Add Service Modal (hidden by default) -->
+      <div id="addServiceModal" class="modal" style="display:none;">
+        <div class="modal-content">
+          <span class="close" onclick="closeAddService()">&times;</span>
+          <h3>Add New Service</h3>
+          <form id="addServiceForm" onsubmit="addService(event)">
+            <label for="serviceName">Service Name</label>
+            <input id="serviceName" class="login-input" type="text" placeholder="Enter service name..." required />
+            <label for="serviceDesc">Description</label>
+            <textarea id="serviceDesc" class="login-input" rows="3" placeholder="Service description..." required></textarea>
+            <button type="submit" class="login-btn" style="margin-top:1rem;">Add Service</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <section id="messages" class="admin-section" style="display:none;">
+      <h2>Messages</h2>
+      <div id="messagesTable"></div>
+    </section>
+    <section id="settings" class="admin-section" style="display:none;">
+      <h2>Settings</h2>
+      <div class="settings-section">
+        <h3>Clinic Profile</h3>
+        <div class="clinic-profile">
+          <div class="clinic-logo-icons">
+            <i class="fa-solid fa-tooth" style="font-size:2.5rem; color:#18b6b0;" title="Dental"></i>
+            <i class="fa-solid fa-house-medical" style="font-size:2.5rem; color:#60a5fa; margin-left:1rem;" title="Clinic"></i>
+            <i class="fa-solid fa-smile" style="font-size:2.5rem; color:#fbbf24; margin-left:1rem;" title="Smile"></i>
+          </div>
+          <div>
+            <div><strong>Name:</strong> SmileBright Dental Clinic</div>
+            <div><strong>Address:</strong> University of the East Recto Avn. Manila</div>
+            <div><strong>Phone:</strong> 09672110254</div>
+            <div><strong>Email:</strong> info@smilebright.com</div>
+          </div>
+        </div>
+      </div>
+      <div class="settings-section">
+        <h3>Admin Account</h3>
+        <div class="admin-profile">
+          <div><strong>Admin:</strong> Dr. Sami Alrosabi</div>
+          <div><strong>Email:</strong> admin@smilebright.com</div>
+          <button class="settings-btn">Change Password</button>
+        </div>
+      </div>
+      
+      <div class="settings-section">
+        <h3>Notifications</h3>
+        <label><input type="checkbox" checked disabled> Email Notifications (enabled)</label><br>
+        <label><input type="checkbox" disabled> SMS Notifications (coming soon)</label>
+      </div>
+      <div class="settings-section">
+        <h3>About</h3>
+        <div>
+          SmileBright Admin Dashboard<br>
+          Version 1.0.0<br>
+          <a href="mailto:support@smilebright.com">Contact Support</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    // Simple navigation logic
+    document.querySelectorAll('.admin-nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (this.hash) {
+          e.preventDefault();
+          document.querySelectorAll('.admin-section').forEach(sec => sec.style.display = 'none');
+          document.querySelector(this.hash).style.display = 'block';
+        }
+      });
+    });
+    function logout() {
+      // Add your logout logic here
+      alert('Logged out!');
+      window.location.href = "login.html";
+    }
+  </script>
+  <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script>
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCvs3wPDVbTc004_N8_ptjkcR_l6VHyjcs",
+  authDomain: "dental-clinic-3c074.firebaseapp.com",
+  projectId: "dental-clinic-3c074",
+  storageBucket: "dental-clinic-3c074.appspot.com",
+  messagingSenderId: "912575701073",
+  appId: "1:912575701073:web:1dd37befd0db230e979870",
+  measurementId: "G-YCZDSY5NLL"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.database();
+
+function loadAppointments() {
+  const tableDiv = document.getElementById('appointmentsTable');
+  tableDiv.innerHTML = "<b>Loading...</b>";
+  db.ref('appointments').once('value').then(snapshot => {
+    const data = snapshot.val();
+    tableDiv.innerHTML = '';
+    let count = 0;
+    let upcoming = 0;
+    const now = new Date();
+    if (!data) {
+      tableDiv.innerHTML = '<div style="color:#888;">No appointments found.</div>';
+      document.getElementById('stat-appointments').textContent = "0";
+      document.getElementById('stat-upcoming').textContent = "0";
+      return;
+    }
+    let html = `<div class="appointments-grid">`;
+    Object.values(data).forEach(app => {
+      count++;
+      // Count as upcoming if date is in the future
+      if (app.date && !isNaN(Date.parse(app.date)) && new Date(app.date) > now) {
+        upcoming++;
+      }
+      html += `
+        <div class="appointment-card">
+          <div class="appointment-header">
+            <div class="appointment-avatar"><i class="fa-solid fa-user"></i></div>
+            <div>
+              <div class="appointment-name">${app.name || "No Name"}</div>
+              <div class="appointment-service">${app.service || "No Service"}</div>
+            </div>
+          </div>
+          <div class="appointment-date"><i class="fa-solid fa-calendar"></i> ${app.date || "No Date"}</div>
+          <div class="appointment-contact"><i class="fa-solid fa-envelope"></i> ${app.email || ""}</div>
+          <div class="appointment-contact"><i class="fa-solid fa-phone"></i> ${app.phone || ""}</div>
+        </div>
+      `;
+    });
+    html += "</div>";
+    tableDiv.innerHTML = html;
+    document.getElementById('stat-appointments').textContent = count;
+    document.getElementById('stat-upcoming').textContent = upcoming;
+  }).catch(err => {
+    tableDiv.innerHTML = "Error loading appointments: " + err.message;
+    document.getElementById('stat-appointments').textContent = "0";
+    document.getElementById('stat-upcoming').textContent = "0";
+  });
+}
+
+function loadUsers() {
+  const tableDiv = document.getElementById('patientsTable');
+  tableDiv.innerHTML = "<b>Loading...</b>";
+  db.ref('users').once('value').then(snapshot => {
+    const data = snapshot.val();
+    tableDiv.innerHTML = '';
+    let count = 0;
+    if (!data) {
+      tableDiv.innerHTML = '<div style="color:#888;">No patients found.</div>';
+      document.getElementById('stat-patients').textContent = "0";
+      return;
+    }
+    let html = `<div class="patients-grid">`;
+    Object.values(data).forEach(user => {
+      count++;
+      html += `
+        <div class="patient-card">
+          <div class="patient-avatar">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div class="patient-info">
+            <div class="patient-email">${user.email || "No email"}</div>
+            ${user.name ? `<div class="patient-name">${user.name}</div>` : ""}
+            ${user.phone ? `<div class="patient-phone">${user.phone}</div>` : ""}
+          </div>
+        </div>
+      `;
+    });
+    html += "</div>";
+    tableDiv.innerHTML = html;
+    document.getElementById('stat-patients').textContent = count;
+  }).catch(err => {
+    tableDiv.innerHTML = "Error loading users: " + err.message;
+    document.getElementById('stat-patients').textContent = "0";
+  });
+}
+
+// Show dashboard by default
+document.addEventListener('DOMContentLoaded', function() {
+  // Show dashboard section
+  showSection('dashboard');
+
+  // Navigation logic
+  document.querySelectorAll('.admin-nav a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      if (this.hash) {
+        e.preventDefault();
+        const sectionId = this.hash.replace('#', '');
+        showSection(sectionId);
+
+        // Load data if needed
+        if (sectionId === 'appointments') loadAppointments();
+        if (sectionId === 'patients') loadUsers();
+        if (sectionId === 'dashboard') {
+          loadAppointments();
+          loadUsers();
+        }
+      }
+    });
+  });
+
+  // Load counts for dashboard on page load
+  loadAppointments();
+  loadUsers();
+  seedDefaultServicesIfNeeded();
+});
+
+function showSection(sectionId) {
+  document.querySelectorAll('.admin-section').forEach(sec => sec.style.display = 'none');
+  document.getElementById(sectionId).style.display = 'block';
+}
+
+// Default services data
+const defaultServices = [
+  {
+    name: "Teeth Cleaning",
+    icon: '<i class="fa-solid fa-toothbrush" style="color:#ff5e7e;"></i>',
+    desc: "Professional cleaning to remove plaque, tartar, and stains for a healthy, radiant smile."
+  },
+  {
+    name: "Braces & Orthodontics",
+    icon: '<i class="fa-solid fa-teeth" style="color:#b3b3b3;"></i>',
+    desc: "Modern braces and aligners to straighten teeth comfortably and discreetly."
+  },
+  {
+    name: "Dental Implants",
+    icon: '<i class="fa-solid fa-screwdriver-wrench" style="color:#a3a3a3;"></i>',
+    desc: "Restore your smile and confidence with natural-looking, durable dental implants."
+  },
+  {
+    name: "Root Canal",
+    icon: '<i class="fa-solid fa-syringe" style="color:#4fc3f7;"></i>',
+    desc: "Gentle root canal therapy to save your natural tooth and relieve pain."
+  },
+  {
+    name: "Cosmetic Dentistry",
+    icon: '<i class="fa-solid fa-sparkles" style="color:#fbbf24;"></i>',
+    desc: "Whitening, veneers, and more to give you the smile of your dreams."
+  },
+  {
+    name: "Other",
+    icon: '<i class="fa-solid fa-star" style="color:#18b6b0;"></i>',
+    desc: "Other dental services tailored to your needs."
+  }
+];
+
+// Use this icon map in your addService and renderServices logic
+const iconMap = {
+  "Teeth Cleaning": '<i class="fa-solid fa-tooth" style="color:#ff5e7e;"></i>',
+  "Braces & Orthodontics": '<i class="fa-solid fa-teeth" style="color:#b3b3b3;"></i>',
+  "Dental Implants": '<i class="fa-solid fa-screwdriver-wrench" style="color:#a3a3a3;"></i>',
+  "Root Canal": '<i class="fa-solid fa-syringe" style="color:#4fc3f7;"></i>',
+  "Cosmetic Dentistry": '<i class="fa-solid fa-star" style="color:#fbbf24;"></i>',
+  "Other": '<i class="fa-solid fa-star" style="color:#18b6b0;"></i>'
+};
+
+// Render services creatively as cards
+function renderServices() {
+  const container = document.getElementById('servicesAdminList');
+  container.innerHTML = '<b>Loading...</b>';
+  db.ref('services').once('value').then(snapshot => {
+    const data = snapshot.val();
+    container.innerHTML = '';
+    let count = 0;
+    if (!data) {
+      container.innerHTML = '<div style="color:#888;">No services found.</div>';
+      document.getElementById('stat-services').textContent = "0";
+      return;
+    }
+    Object.entries(data).forEach(([key, service]) => {
+      count++;
+      // Use iconMap if available, else fallback to stored icon
+      const icon = iconMap[service.name] || service.icon || '';
+      const card = document.createElement('div');
+      card.className = 'service-admin-card';
+      card.innerHTML = `
+        <div class="service-admin-icon">${icon}</div>
+        <div class="service-admin-title">${service.name}</div>
+        <div class="service-admin-desc">${service.desc}</div>
+        <button class="service-delete-btn" onclick="deleteService('${key}')"><i class="fa-solid fa-trash"></i> Delete</button>
+      `;
+      container.appendChild(card);
+    });
+    document.getElementById('stat-services').textContent = count;
+  });
+}
+
+// On first load, if no services exist in Firebase, upload the defaults
+function seedDefaultServicesIfNeeded() {
+  db.ref('services').once('value').then(snapshot => {
+    if (!snapshot.exists()) {
+      defaultServices.forEach(service => {
+        db.ref('services').push(service);
+      });
+    }
+    renderServices();
+  });
+}
+
+// Modal logic
+function showAddService() {
+  document.getElementById('addServiceModal').style.display = 'block';
+}
+function closeAddService() {
+  document.getElementById('addServiceModal').style.display = 'none';
+  document.getElementById('addServiceForm').reset();
+}
+function addService(e) {
+  e.preventDefault();
+  const name = document.getElementById('serviceName').value;
+  const desc = document.getElementById('serviceDesc').value;
+  let icon = '<i class="fa-solid fa-star" style="color:#18b6b0;"></i>';
+  // Match icon to service
+  if (iconMap[name]) icon = iconMap[name];
+
+  // Push to Firebase
+  db.ref('services').push({ name, icon, desc }).then(() => {
+    renderServices();
+    closeAddService();
+  });
+}
+function deleteService(key) {
+  if (confirm("Are you sure you want to delete this service?")) {
+    db.ref('services/' + key).remove().then(() => {
+      renderServices();
+    });
+  }
+}
+</script>
+
+
+</body>
+</html>

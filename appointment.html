@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Appointment - SmileBright Dental</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="appointment.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <i class="fa-solid fa-tooth" style="color:#18b6b0; font-size:32px; margin-right:8px;"></i>
+      <span>SmileBright</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="appointment.html" class="active">Appointment</a></li>
+      <li><a href="contact.html">Contact</a></li>
+     <form action="login.html" method="get" style="display:inline;">
+        <button type="submit" style="background:#14b8a6;color:#fff;border:none;padding:7px 18px;border-radius:5px;cursor:pointer;font-weight:600;">Logout</button>
+      </form>
+    </ul>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+  <section id="appointment-section">
+    <div class="appointment-hero modern-hero">
+      <div class="modern-hero-graphic">
+        <span class="modern-hero-emoji">🦷</span>
+        <div class="modern-hero-bubble"></div>
+      </div>
+      <div class="modern-hero-content">
+        <h2>Book Your Appointment</h2>
+        <p>
+          <span class="modern-highlight">Easy.</span>
+          <span class="modern-highlight delay1">Fast.</span>
+          <span class="modern-highlight delay2">Hassle-free.</span>
+          <br>
+          <span class="modern-highlight delay3">Let’s get you smiling!</span>
+        </p>
+      </div>
+    </div>
+    <!-- Steps at the top -->
+    <div class="appointment-steps">
+      <div class="step-card">
+        <span style="font-size:2.2rem;">📝</span>
+        <div>Fill the form</div>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-card">
+        <span style="font-size:2.2rem;">📅</span>
+        <div>Pick your date</div>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-card">
+        <span style="font-size:2.2rem;">😃</span>
+        <div>Smile at your visit!</div>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progressBar"></div>
+      </div>
+      <div class="progress-bar-label" id="progressLabel">Step 1 of 2: Fill the form</div>
+    </div>
+
+    <!-- Appointment Form and Info -->
+    <div class="appointment-form-wrap">
+      <form id="appointmentForm" autocomplete="off">
+        <div id="step1">
+          <div class="form-group">
+            <label for="userName">Full Name</label>
+            <input type="text" id="userName" name="userName" placeholder="Your Name" required />
+          </div>
+          <div class="form-group">
+            <label for="userEmail">Email</label>
+            <input type="email" id="userEmail" name="userEmail" placeholder="brightSmile@gmail.com" required />
+          </div>
+          <div class="form-group">
+            <label for="userPhone">Phone</label>
+            <input type="tel" id="userPhone" name="userPhone" placeholder="+639 1111 000" required />
+          </div>
+          <div class="form-group">
+            <label for="serviceType">Service</label>
+            <select id="serviceType" name="serviceType" required>
+              <option value="">Select a Service</option>
+              <option>Teeth Cleaning</option>
+              <option>Braces & Orthodontics</option>
+              <option>Dental Implants</option>
+              <option>Root Canal</option>
+              <option>Cosmetic Dentistry</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <button type="button" class="appointment-btn" id="nextStepBtn">Next</button>
+        </div>
+        <div id="step2" style="display:none;">
+          <div class="form-group calendar-group">
+            <label for="appointmentDate">Date & Time</label>
+            <div class="calendar-input-wrap">
+              <span class="calendar-icon">
+                <!-- SVG calendar icon -->
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                  <rect x="3" y="5" width="18" height="16" rx="3" fill="#38bdf8"/>
+                  <rect x="3" y="9" width="18" height="12" rx="2" fill="#fff"/>
+                  <rect x="7" y="13" width="2" height="2" rx="1" fill="#38bdf8"/>
+                  <rect x="11" y="13" width="2" height="2" rx="1" fill="#38bdf8"/>
+                  <rect x="15" y="13" width="2" height="2" rx="1" fill="#38bdf8"/>
+                </svg>
+              </span>
+              <input type="text" id="appointmentDate" name="appointmentDate" required placeholder="Select date and time" />
+            </div>
+            <div class="availability-info" id="availabilityInfo">
+              <span class="availability-dot available"></span> Available
+            </div>
+          </div>
+          <button type="submit" class="appointment-btn">Book Now</button>
+          <button type="button" class="appointment-btn secondary" id="backStepBtn" style="margin-top:0.5rem;">Back</button>
+          <div id="appointmentMessage"></div>
+          <div id="appointmentSuccessAnim" class="success-anim"></div>
+        </div>
+      </form>
+      <div class="appointment-info">
+        <h3>Why Book Online?</h3>
+        <ul>
+          <li>✨ Instant confirmation</li>
+          <li>⏰ Flexible scheduling</li>
+          <li>🔒 Secure & private</li>
+          <li>😊 Friendly reminders</li>
+        </ul>
+      </div>
+    </div>
+
+   
+  </section>
+
+ 
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    // Hamburger menu for mobile
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      menuToggle.classList.toggle('active');
+    });
+
+    // Step Navigation Logic (move this up!)
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const nextStepBtn = document.getElementById('nextStepBtn');
+    const backStepBtn = document.getElementById('backStepBtn');
+    const progressBar = document.getElementById('progressBar');
+    const progressLabel = document.getElementById('progressLabel');
+
+    // Progress Bar Logic
+    const form = document.getElementById('appointmentForm');
+    const fields = Array.from(form.querySelectorAll('input, select'));
+    function updateProgress() {
+      let filled = fields.filter(f => f.value.trim() !== '').length;
+      let percent = Math.max(10, Math.round((filled / fields.length) * 100));
+      progressBar.style.width = percent + '%';
+      if (percent < 100) {
+        progressLabel.textContent = "Step 1 of 2: Fill the form";
+      } else {
+        progressLabel.textContent = "Step 2 of 2: Pick your date";
+      }
+    }
+    fields.forEach(f => f.addEventListener('input', updateProgress));
+    updateProgress();
+
+    // Live Availability Widget (demo logic)
+    const appointmentDate = document.getElementById('appointmentDate');
+    const availabilityInfo = document.getElementById('availabilityInfo');
+    appointmentDate.addEventListener('change', () => {
+      // Demo: block Sundays as unavailable
+      const date = new Date(appointmentDate.value);
+      if (date.getDay() === 0) {
+        availabilityInfo.innerHTML = '<span class="availability-dot unavailable"></span> Unavailable (Closed Sundays)';
+      } else {
+        availabilityInfo.innerHTML = '<span class="availability-dot available"></span> Available';
+      }
+    });
+
+    // Animated Success Confirmation
+    const appointmentMessage = document.getElementById('appointmentMessage');
+    const appointmentSuccessAnim = document.getElementById('appointmentSuccessAnim');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Get the date value directly at submit time
+      const date = document.getElementById('appointmentDate').value;
+
+      const data = {
+        name: step1Data.name,
+        email: step1Data.email,
+        phone: step1Data.phone,
+        service: step1Data.service,
+        date: date // <-- This should now be filled
+      };
+
+      db.ref('appointments').push(data, function(error) {
+        if (error) {
+          appointmentMessage.textContent = 'Error submitting appointment. Please try again.';
+          appointmentMessage.className = "";
+        } else {
+          appointmentMessage.textContent = "🎉 Appointment booked! We'll contact you soon.";
+          appointmentMessage.className = "success";
+          // Confetti animation
+          appointmentSuccessAnim.innerHTML = `
+            <span class="confetti">🎊</span>
+            <span class="confetti">🎉</span>
+            <span class="confetti">😁</span>
+            <span class="confetti">🎉</span>
+            <span class="confetti">🎊</span>
+          `;
+          appointmentSuccessAnim.classList.add('active');
+          form.reset();
+          step1Data = {};
+          updateProgress();
+          setTimeout(() => {
+            appointmentMessage.textContent = "";
+            appointmentMessage.className = "";
+            appointmentSuccessAnim.classList.remove('active');
+            appointmentSuccessAnim.innerHTML = "";
+            // Go back to step 1 after success
+            step2.style.display = 'none';
+            step1.style.display = 'block';
+            progressBar.style.width = '50%';
+            progressLabel.textContent = "Step 1 of 2: Fill the form";
+          }, 2500);
+        }
+      });
+    });
+
+    // Variables to store step 1 values
+    let step1Data = {};
+
+    nextStepBtn.onclick = function() {
+      // Save step 1 values
+      step1Data = {
+        name: form.userName.value,
+        email: form.userEmail.value,
+        phone: form.userPhone.value,
+        service: form.serviceType.value
+      };
+      // Optionally validate here before moving to next step
+      if (!step1Data.name || !step1Data.email || !step1Data.phone || !step1Data.service) {
+        alert("Please fill in all fields before proceeding.");
+        return;
+      }
+      step1.style.display = 'none';
+      step2.style.display = 'block';
+      progressBar.style.width = '100%';
+      progressLabel.textContent = "Step 2 of 2: Pick a date";
+    };
+
+    backStepBtn.onclick = function() {
+      step2.style.display = 'none';
+      step1.style.display = 'block';
+      progressBar.style.width = '50%';
+      progressLabel.textContent = "Step 1 of 2: Fill the form";
+    };
+
+    // Flatpickr for date and time picking
+    flatpickr("#appointmentDate", {
+      enableTime: true,
+      dateFormat: "Y-m-d H:i",
+      minDate: "today"
+    });
+  </script>
+
+  <!-- Firebase App (core) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <!-- Firebase Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics-compat.js"></script>
+  <!-- Firebase Database (for saving appointments) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCvs3wPDVbTc004_N8_ptjkcR_l6VHyjcs",
+      authDomain: "dental-clinic-3c074.firebaseapp.com",
+      projectId: "dental-clinic-3c074",
+      storageBucket: "dental-clinic-3c074.appspot.com", // Fixed typo: .app to .appspot.com
+      messagingSenderId: "912575701073",
+      appId: "1:912575701073:web:1dd37befd0db230e979870",
+      measurementId: "G-YCZDSY5NLL"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    // Optional: firebase.analytics();
+
+    // Get a reference to the database service
+    const db = firebase.database();
+  </script>
+</body>
+</html>

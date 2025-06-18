@@ -1,0 +1,668 @@
+body {
+  margin: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  background: linear-gradient(120deg, #e0e7ff 0%, #f0fdfa 100%);
+  min-height: 100vh;
+}
+.admin-nav {
+  width: 230px;
+  background: #fff;
+  box-shadow: 2px 0 16px 0 rgba(31, 38, 135, 0.08);
+  height: 100vh;
+  position: fixed;
+  top: 0; left: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+.admin-nav .logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #18b6b0;
+  padding: 2rem 1.5rem 1rem 1.5rem;
+  letter-spacing: 0.03em;
+}
+.admin-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+.admin-nav li {
+  margin: 0.5rem 0;
+}
+.admin-nav a {
+  display: flex;
+  align-items: center;
+  color: #22223b;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.05rem;
+  border-left: 4px solid transparent;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.admin-nav a i {
+  margin-right: 0.8rem;
+  font-size: 1.2rem;
+}
+.admin-nav a:hover, .admin-nav a.active {
+  background: #e0e7ff;
+  color: #18b6b0;
+  border-left: 4px solid #18b6b0;
+}
+.admin-main {
+  margin-left: 230px;
+  padding: 2.5rem 2rem;
+  min-height: 100vh;
+}
+.admin-section {
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.07);
+  padding: 2rem 2rem 2.5rem 2rem;
+  margin-bottom: 2rem;
+  animation: fadeIn 0.7s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+.admin-section h2 {
+  margin-top: 0;
+  color: #18b6b0;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+.admin-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.stat-card {
+  background: linear-gradient(90deg, #60a5fa 0%, #818cf8 100%);
+  color: #fff;
+  border-radius: 1rem;
+  padding: 2rem 2.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  box-shadow: 0 2px 12px 0 rgba(99,102,241,0.08);
+  text-align: center;
+  min-width: 140px;
+}
+.stat-card span {
+  font-size: 2.2rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+button {
+  background: linear-gradient(90deg, #60a5fa 0%, #818cf8 100%);
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.2s, transform 0.1s;
+}
+button:hover {
+  background: linear-gradient(90deg, #818cf8 0%, #60a5fa 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+@media (max-width: 900px) {
+  .admin-main {
+    margin-left: 0;
+    padding: 1rem 0.5rem;
+  }
+  .admin-nav {
+    width: 100vw;
+    height: auto;
+    flex-direction: row;
+    box-shadow: 0 2px 16px 0 rgba(31, 38, 135, 0.08);
+    position: static;
+  }
+  .admin-nav ul {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: space-around;
+  }
+  .admin-nav li {
+    margin: 0;
+  }
+  .admin-section {
+    padding: 1rem;
+  }
+  .admin-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+.admin-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+.stat-card {
+  background: linear-gradient(90deg, #60a5fa 0%, #818cf8 100%);
+  color: #fff;
+  border-radius: 1rem;
+  padding: 2rem 2.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  box-shadow: 0 2px 12px 0 rgba(99,102,241,0.08);
+  text-align: center;
+  min-width: 170px;
+  flex: 1 1 170px;
+  position: relative;
+  margin-bottom: 1rem;
+  transition: transform 0.15s;
+}
+.stat-card:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 6px 24px 0 rgba(99,102,241,0.18);
+}
+.stat-card i {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  opacity: 0.85;
+}
+.stat-label {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 0.2rem;
+  opacity: 0.95;
+}
+.dashboard-welcome {
+  background: #f0fdfa;
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px 0 rgba(99,102,241,0.04);
+}
+.dashboard-welcome h3 {
+  margin-top: 0;
+  color: #18b6b0;
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+.dashboard-quicklinks {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+.quicklink {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(90deg, #818cf8 0%, #60a5fa 100%);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px 0 rgba(99,102,241,0.08);
+  transition: background 0.2s, transform 0.1s;
+}
+.quicklink i {
+  margin-right: 0.5rem;
+}
+.quicklink:hover {
+  background: linear-gradient(90deg, #60a5fa 0%, #818cf8 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+.dashboard-tip {
+  margin-top: 1.5rem;
+  background: #fffbe6;
+  color: #b59f3b;
+  border-radius: 0.7rem;
+  padding: 1rem 1.5rem;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  box-shadow: 0 2px 8px 0 rgba(99,102,241,0.04);
+}
+.dashboard-tip i {
+  font-size: 1.3rem;
+}
+@media (max-width: 900px) {
+  .admin-stats { flex-direction: column; gap: 1rem; }
+  .dashboard-quicklinks { flex-direction: column; gap: 0.7rem; }
+}
+
+/* Services section styles */
+.services-admin-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.service-admin-card {
+  background: #f8fafc;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 12px 0 rgba(99,102,241,0.06);
+  padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  width: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.service-admin-card:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 6px 24px 0 rgba(99,102,241,0.13);
+}
+.service-admin-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.7rem;
+}
+.service-admin-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #18b6b0;
+  margin-bottom: 0.4rem;
+  text-align: center;
+}
+.service-admin-desc {
+  color: #5a6a85;
+  font-size: 0.98rem;
+  margin-bottom: 1.1rem;
+  text-align: center;
+  min-height: 48px;
+}
+.service-delete-btn {
+  background: #ff5e7e;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.98rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  margin-top: 0.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.service-delete-btn:hover {
+  background: #d90429;
+  transform: scale(1.04);
+}
+.add-service-btn {
+  background: linear-gradient(90deg, #60a5fa 0%, #818cf8 100%);
+  color: #fff;
+  border: none;
+  border-radius: 0.7rem;
+  padding: 0.8rem 1.7rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 1.2rem;
+  margin-top: 0.5rem;
+  transition: background 0.2s, transform 0.1s;
+}
+.add-service-btn:hover {
+  background: linear-gradient(90deg, #818cf8 0%, #60a5fa 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  overflow: auto;
+  background: rgba(0,0,0,0.18);
+}
+.modal-content {
+  background: #fff;
+  margin: 7% auto;
+  padding: 2rem 2.5rem;
+  border-radius: 1.2rem;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.13);
+}
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 1.1rem;
+  right: 1.3rem;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.close:hover,
+.close:focus {
+  color: #18b6b0;
+}
+#addServiceModal .modal-content {
+  background: #fff;
+  margin: 7% auto;
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  border-radius: 1.2rem;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.13);
+  animation: fadeIn 0.4s;
+}
+#addServiceModal h3, #addServiceModal label {
+  color: #18b6b0;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+#addServiceModal h3 {
+  color: #1a2540;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+#addServiceForm label {
+  display: block;
+  margin-top: 1.1rem;
+  margin-bottom: 0.3rem;
+  font-size: 1.08rem;
+  letter-spacing: 0.01em;
+}
+#addServiceForm input[type="text"],
+#addServiceForm textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 0.6rem;
+  border: 1.5px solid #d1d5db;
+  background: #f3f4f6;
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+#addServiceForm input[type="text"]:focus,
+#addServiceForm textarea:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 2px #bae6fd;
+}
+#addServiceForm textarea {
+  resize: vertical;
+  min-height: 70px;
+  font-family: inherit;
+}
+#addServiceForm .login-btn {
+  background: linear-gradient(90deg, #60a5fa 0%, #818cf8 100%);
+  color: #fff;
+  border: none;
+  border-radius: 0.6rem;
+  padding: 0.9rem 2.1rem;
+  font-size: 1.08rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 1.2rem;
+  transition: background 0.2s, transform 0.1s;
+  display: block;
+  width: fit-content;
+  box-shadow: 0 2px 8px 0 rgba(99,102,241,0.08);
+}
+#addServiceForm .login-btn:hover {
+  background: linear-gradient(90deg, #818cf8 0%, #60a5fa 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+#addServiceModal .close {
+  color: #aaa;
+  position: absolute;
+  top: 1.1rem;
+  right: 1.3rem;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+#addServiceModal .close:hover,
+#addServiceModal .close:focus {
+  color: #18b6b0;
+}
+
+/* Modern Patients Grid */
+.patients-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+.patient-card {
+  background: #f8fafc;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 12px 0 rgba(99,102,241,0.06);
+  padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  width: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.patient-card:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 6px 24px 0 rgba(99,102,241,0.13);
+}
+.patient-avatar {
+  background: linear-gradient(90deg, #60a5fa 0%, #818cf8 100%);
+  color: #fff;
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+}
+.patient-info {
+  text-align: center;
+}
+.patient-email {
+  font-weight: 700;
+  color: #18b6b0;
+  margin-bottom: 0.3rem;
+  word-break: break-all;
+}
+.patient-name {
+  color: #1a2540;
+  font-size: 1.05rem;
+  margin-bottom: 0.2rem;
+}
+.patient-phone {
+  color: #5a6a85;
+  font-size: 0.98rem;
+}
+
+/* --- Appointments Controls --- */
+.appointments-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+.appointments-controls input,
+.appointments-controls select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #cce3e0;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* --- Appointments Grid & Card --- */
+.appointments-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.appointment-card {
+  background: #fff;
+  border: 1px solid #e0f2f1;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #18b6b01a;
+  padding: 1.2rem 1.5rem;
+  min-width: 270px;
+  max-width: 320px;
+  flex: 1 1 270px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  position: relative;
+  transition: box-shadow 0.2s;
+}
+.appointment-card:hover {
+  box-shadow: 0 4px 16px #18b6b033;
+}
+.appointment-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.appointment-avatar {
+  background: #18b6b0;
+  color: #fff;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+.appointment-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.appointment-service {
+  font-size: 0.95rem;
+  color: #18b6b0;
+}
+.appointment-date,
+.appointment-contact {
+  font-size: 0.98rem;
+  color: #444;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.appointment-status label {
+  font-size: 0.97rem;
+  color: #666;
+}
+.appointment-status select {
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #cce3e0;
+  background: #f8fdfa;
+}
+.appointment-actions {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 0.5rem;
+}
+.appointment-actions button {
+  background: #18b6b0;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.97rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.appointment-actions button:hover {
+  background: #13918d;
+}
+
+/* --- Modal Styling --- */
+.modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 10px;
+  padding: 2rem 2.5rem;
+  min-width: 320px;
+  max-width: 95vw;
+  box-shadow: 0 6px 32px #18b6b044;
+  position: relative;
+}
+.modal-content .close {
+  position: absolute;
+  right: 1.2rem;
+  top: 1.2rem;
+  font-size: 1.5rem;
+  color: #888;
+  cursor: pointer;
+}
+.modal-content label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+.modal-content input {
+  width: 100%;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid #cce3e0;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-bottom: 0.7rem;
+}
+.modal-content button {
+  background: #18b6b0;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+.modal-content button:hover {
+  background: #13918d;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .appointments-grid {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .appointment-card {
+    min-width: 90vw;
+    max-width: 98vw;
+  }
+  .modal-content {
+    min-width: 90vw;
+    padding: 1rem 0.5rem;
+  }
+}
