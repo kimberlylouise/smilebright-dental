@@ -7,9 +7,25 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="index.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <meta http-equiv="refresh" content="0; url=login.html">
 </head>
 <body>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script>
+    // Your Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyCvs3wPDVbTc004_N8_ptjkcR_l6VHyjcs",
+      authDomain: "dental-clinic-3c074.firebaseapp.com",
+      projectId: "dental-clinic-3c074",
+    };
+    firebase.initializeApp(firebaseConfig);
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (!user) {
+        window.location.href = "index.html";
+      }
+    });
+  </script>
+
   <nav class="navbar">
     <div class="logo">
       <i class="fa-solid fa-tooth"></i>
