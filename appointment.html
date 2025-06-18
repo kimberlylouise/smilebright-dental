@@ -30,6 +30,9 @@
       <span></span><span></span><span></span>
     </div>
   </nav>
+
+
+
   <section id="appointment-section">
     <div class="appointment-hero modern-hero">
       <div class="modern-hero-graphic">
@@ -47,11 +50,20 @@
         </p>
       </div>
     </div>
-    <!-- Steps at the top -->
-    <div class="appointment-steps">
-      <div class="step-card">
-        <span style="font-size:2.2rem;">📝</span>
-        <div>Fill the form</div>
+
+    
+  <!-- View My Appointments button at the very top of the section -->
+  <div style="display: flex; justify-content: flex-start; margin-top: 1.5rem;">
+    <button id="myAppointmentsBtn" class="appointment-btn secondary">
+      <i class="fa-solid fa-calendar-check"></i> View My Appointments
+    </button>
+  </div>
+
+  <!-- Steps at the top -->
+  <div class="appointment-steps">
+    <div class="step-card">
+      <span style="font-size:2.2rem;">📝</span>
+      <div>Fill the form</div>
       </div>
       <div class="step-arrow">→</div>
       <div class="step-card">
@@ -139,15 +151,9 @@
         </ul>
       </div>
     </div>
+    
 
-    <!-- Place this at the very top of your #appointment-section, just after <section id="appointment-section"> -->
-    <div style="display: flex; justify-content: flex-start;">
-      <button id="myAppointmentsBtn" class="appointment-btn secondary" style="margin: 1.5rem 0 0 0;">
-        <i class="fa-solid fa-calendar-check"></i> View My Appointments
-      </button>
-    </div>
-
-    <!-- Modal for showing appointments (place near the end of <body>) -->
+    <!-- Modal for showing appointments (outside the section, near end of body) -->
     <div id="appointmentsModal" class="modal" style="display:none;">
       <div class="modal-content">
         <span class="close" id="closeAppointmentsModal">&times;</span>
@@ -178,10 +184,34 @@
     </style>
   </section>
 
- 
-
+  <!-- Firebase App (core) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <!-- Firebase Auth -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <!-- Firebase Analytics -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics-compat.js"></script>
+  <!-- Firebase Database (for saving appointments) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCvs3wPDVbTc004_N8_ptjkcR_l6VHyjcs",
+      authDomain: "dental-clinic-3c074.firebaseapp.com",
+      projectId: "dental-clinic-3c074",
+      storageBucket: "dental-clinic-3c074.appspot.com",
+      messagingSenderId: "912575701073",
+      appId: "1:912575701073:web:1dd37befd0db230e979870",
+      measurementId: "G-YCZDSY5NLL"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    // Optional: firebase.analytics();
+
+    // Get a reference to the database service
+    const db = firebase.database();
+
     // Hamburger menu for mobile
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.querySelector('.nav-links');
@@ -314,6 +344,7 @@
       minDate: "today"
     });
 
+    // "View My Appointments" modal logic
     document.getElementById('myAppointmentsBtn').onclick = function() {
       // Get the logged-in user's email from Firebase Auth
       const user = firebase.auth().currentUser;
@@ -330,14 +361,42 @@
           listDiv.innerHTML = "<div style='color:#888;'>No appointments found for your account.</div>";
           return;
         }
-        let html = "<ul style='padding-left:1.2em;'>";
+        let html = `
+    <div class="modern-table-container">
+      <table class="modern-table">
+        <thead>
+          <tr>
+            <th><i class="fa-solid fa-tooth"></i> Service</th>
+            <th><i class="fa-solid fa-calendar"></i> Date</th>
+            <th><i class="fa-solid fa-user"></i> Name</th>
+            <th><i class="fa-solid fa-phone"></i> Phone</th>
+            <th><i class="fa-solid fa-circle"></i> Status</th>
+          </tr>
+        </thead>
+        <tbody>
+  `;
         Object.values(data).forEach(app => {
-          html += `<li>
-            <b>${app.service}</b> on <b>${app.date}</b><br>
-            <span style="font-size:0.95em;color:#555;">Status: ${app.status || "pending"}</span>
-          </li>`;
+          let status = (app.status || "pending").toLowerCase();
+          html += `
+      <tr>
+        <td>${app.service}</td>
+        <td>${app.date}</td>
+        <td>${app.name}</td>
+        <td>${app.phone}</td>
+        <td>
+          <span class="status-badge ${status}">
+            <i class="fa-solid fa-circle"></i>
+            ${status.charAt(0).toUpperCase() + status.slice(1)}
+          </span>
+        </td>
+      </tr>
+    `;
         });
-        html += "</ul>";
+        html += `
+        </tbody>
+      </table>
+    </div>
+  `;
         listDiv.innerHTML = html;
       });
     };
@@ -347,32 +406,16 @@
     document.getElementById('appointmentsModal').onclick = function(e) {
       if (e.target === this) this.style.display = 'none';
     };
-  </script>
 
-  <!-- Firebase App (core) -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <!-- Firebase Analytics -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics-compat.js"></script>
-  <!-- Firebase Database (for saving appointments) -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
-  <script>
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyCvs3wPDVbTc004_N8_ptjkcR_l6VHyjcs",
-      authDomain: "dental-clinic-3c074.firebaseapp.com",
-      projectId: "dental-clinic-3c074",
-      storageBucket: "dental-clinic-3c074.appspot.com", // Fixed typo: .app to .appspot.com
-      messagingSenderId: "912575701073",
-      appId: "1:912575701073:web:1dd37befd0db230e979870",
-      measurementId: "G-YCZDSY5NLL"
-    };
-
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    // Optional: firebase.analytics();
-
-    // Get a reference to the database service
-    const db = firebase.database();
+    // Auth state change listener
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // User is logged in
+      } else {
+        // User is not logged in
+        window.location.href = "login.html";
+      }
+    });
   </script>
 </body>
 </html>

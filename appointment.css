@@ -593,3 +593,66 @@
 .calendar-input-wrap input {
   flex: 1;
 }
+
+/* Modern Table Styles */
+.modern-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+.modern-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  font-family: 'Inter', Arial, sans-serif;
+  box-shadow: 0 2px 12px #18b6b022;
+}
+.modern-table th, .modern-table td {
+  padding: 0.85em 1.1em;
+  text-align: left;
+}
+.modern-table th {
+  background: #18b6b0;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.05em;
+  border-bottom: 2px solid #13a39c;
+}
+.modern-table tr:nth-child(even) {
+  background: #f8fdfa;
+}
+.modern-table tr:nth-child(odd) {
+  background: #eafaf7;
+}
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-weight: 500;
+  border-radius: 1em;
+  padding: 0.25em 0.8em;
+  font-size: 0.97em;
+}
+.status-badge.pending {
+  background: #fef9c3;
+  color: #b45309;
+}
+.status-badge.completed {
+  background: #dcfce7;
+  color: #15803d;
+}
+.status-badge.canceled {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+.status-badge .fa-circle {
+  font-size: 0.8em;
+}
+@media (max-width: 600px) {
+  .modern-table th, .modern-table td {
+    padding: 0.6em 0.5em;
+    font-size: 0.97em;
+  }
+}
