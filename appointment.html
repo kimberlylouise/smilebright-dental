@@ -140,7 +140,40 @@
       </div>
     </div>
 
-   
+    <!-- Add this button where you want, e.g., below the form -->
+    <button id="myAppointmentsBtn" class="appointment-btn secondary" style="margin: 1.5rem 0 0 0;">
+      <i class="fa-solid fa-calendar-check"></i> My Appointments
+    </button>
+
+    <!-- Modal for showing appointments -->
+    <div id="appointmentsModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close" id="closeAppointmentsModal">&times;</span>
+        <h3>My Appointments</h3>
+        <div id="myAppointmentsList">Loading...</div>
+      </div>
+    </div>
+
+    <style>
+    .modal {
+      position: fixed; z-index: 1000; left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.25);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal-content {
+      background: #fff; border-radius: 10px; padding: 2rem 2.5rem;
+      min-width: 320px; max-width: 95vw; box-shadow: 0 6px 32px #18b6b044;
+      position: relative;
+    }
+    .modal-content .close {
+      position: absolute; right: 1.2rem; top: 1.2rem;
+      font-size: 1.5rem; color: #888; cursor: pointer;
+    }
+    @media (max-width: 700px) {
+      .modal-content { min-width: 90vw; padding: 1rem 0.5rem; }
+    }
+    </style>
   </section>
 
  
@@ -278,6 +311,42 @@
       dateFormat: "Y-m-d H:i",
       minDate: "today"
     });
+
+    document.getElementById('myAppointmentsBtn').onclick = function() {
+      // Get the user's email from the form (or from Firebase Auth if you use it)
+      let email = document.getElementById('userEmail').value.trim().toLowerCase();
+      if (!email) {
+        alert("Please enter your email in the form first.");
+        return;
+      }
+      // Show modal
+      document.getElementById('appointmentsModal').style.display = 'flex';
+      // Fetch appointments from Firebase
+      db.ref('appointments').orderByChild('email').equalTo(email).once('value', function(snapshot) {
+        const data = snapshot.val();
+        const listDiv = document.getElementById('myAppointmentsList');
+        if (!data) {
+          listDiv.innerHTML = "<div style='color:#888;'>No appointments found for this email.</div>";
+          return;
+        }
+        let html = "<ul style='padding-left:1.2em;'>";
+        Object.values(data).forEach(app => {
+          html += `<li>
+            <b>${app.service}</b> on <b>${app.date}</b><br>
+            <span style="font-size:0.95em;color:#555;">Status: ${app.status || "pending"}</span>
+          </li>`;
+        });
+        html += "</ul>";
+        listDiv.innerHTML = html;
+      });
+    };
+    document.getElementById('closeAppointmentsModal').onclick = function() {
+      document.getElementById('appointmentsModal').style.display = 'none';
+    };
+    // Optional: close modal when clicking outside content
+    document.getElementById('appointmentsModal').onclick = function(e) {
+      if (e.target === this) this.style.display = 'none';
+    };
   </script>
 
   <!-- Firebase App (core) -->
