@@ -193,7 +193,7 @@ function loadAppointments() {
       return;
     }
     let html = `<div class="appointments-grid">`;
-    Object.values(data).forEach(app => {
+    Object.entries(data).forEach(([key, app]) => {
       count++;
       // Count as upcoming if date is in the future
       if (app.date && !isNaN(Date.parse(app.date)) && new Date(app.date) > now) {
@@ -211,6 +211,18 @@ function loadAppointments() {
           <div class="appointment-date"><i class="fa-solid fa-calendar"></i> ${app.date || "No Date"}</div>
           <div class="appointment-contact"><i class="fa-solid fa-envelope"></i> ${app.email || ""}</div>
           <div class="appointment-contact"><i class="fa-solid fa-phone"></i> ${app.phone || ""}</div>
+          <div class="appointment-status">
+            <label>Status:
+              <select onchange="updateAppointmentStatus('${key}', this.value)">
+                <option value="pending" ${app.status === 'pending' ? 'selected' : ''}>Pending</option>
+                <option value="completed" ${app.status === 'completed' ? 'selected' : ''}>Completed</option>
+                <option value="canceled" ${app.status === 'canceled' ? 'selected' : ''}>Canceled</option>
+              </select>
+            </label>
+          </div>
+          <div class="appointment-actions">
+            <button onclick="deleteAppointment('${key}')"><i class="fa-solid fa-trash"></i> Delete</button>
+          </div>
         </div>
       `;
     });
@@ -410,6 +422,19 @@ function deleteService(key) {
   if (confirm("Are you sure you want to delete this service?")) {
     db.ref('services/' + key).remove().then(() => {
       renderServices();
+    });
+  }
+}
+
+function updateAppointmentStatus(key, status) {
+  db.ref('appointments/' + key).update({ status }).then(() => {
+    loadAppointments();
+  });
+}
+function deleteAppointment(key) {
+  if (confirm("Are you sure you want to delete this appointment?")) {
+    db.ref('appointments/' + key).remove().then(() => {
+      loadAppointments();
     });
   }
 }
