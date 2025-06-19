@@ -196,7 +196,12 @@ function loadAppointments() {
     Object.entries(data).forEach(([key, app]) => {
       count++;
       // Count as upcoming if date is in the future
-      if (app.date && !isNaN(Date.parse(app.date)) && new Date(app.date) > now) {
+      if (
+        app.date &&
+        !isNaN(Date.parse(app.date)) &&
+        new Date(app.date) > now &&
+        (app.status === undefined || app.status === "pending")
+      ) {
         upcoming++;
       }
       html += `
